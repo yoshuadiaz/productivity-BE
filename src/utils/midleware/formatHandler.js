@@ -8,8 +8,6 @@ function formatHandler (body, req, res) {
   ) {
     return body
   } else if (req.headers['content-type'] === 'text/xml') {
-    res.set('Content-Type', 'text/xml')
-
     const isBodyDataArray = body.data.length
 
     if (isBodyDataArray && isBodyDataArray > 0) {
@@ -17,9 +15,9 @@ function formatHandler (body, req, res) {
         name: body.entity,
         children: { ...item }
       }))
-      return jsonxml(JSON.stringify({ ...body, data }), true)
+      res.type('text/xml').status(200).send(jsonxml(JSON.stringify({ ...body, data }), true))
     } else {
-      return jsonxml(JSON.stringify(body), true)
+      res.type('text/xml').status(200).send(jsonxml(JSON.stringify(body), true))
     }
   } else {
     res.json({
