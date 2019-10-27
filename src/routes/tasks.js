@@ -11,9 +11,11 @@ function tasksAPI (app) {
       const { status } = req.body
       const tasks = await tasksService.getTasks(status)
       res.status(200).json({
+        entity: 'task',
         data: tasks,
         message: 'tasks listed'
       })
+      next()
     } catch (err) {
       next(err)
     }
@@ -25,6 +27,7 @@ function tasksAPI (app) {
       const { status } = req.body
       const tasks = await tasksService.getTasks(status, q)
       res.status(200).json({
+        entity: 'task',
         data: tasks,
         message: 'found tasks listed'
       })
@@ -38,6 +41,7 @@ function tasksAPI (app) {
       const { id } = req.params
       const task = await tasksService.getTask(id)
       res.status(200).json({
+        entity: 'task',
         data: task,
         message: 'task retrieved'
       })
@@ -52,6 +56,7 @@ function tasksAPI (app) {
       const createdtaskId = await tasksService.createTask(task)
 
       res.status(201).json({
+        entity: 'task',
         data: createdtaskId,
         message: 'task created'
       })
@@ -73,11 +78,13 @@ function tasksAPI (app) {
         res
           .status(200)
           .json({
+            entity: 'task',
             data: updatedtaskId,
             message: 'task updated'
           })
       } else {
         res.json({
+          entity: 'task',
           data: null,
           message: 'task not updated'
         }).status(304).end()
@@ -95,6 +102,7 @@ function tasksAPI (app) {
       const deletedtaskId = await tasksService.deleteTask(taskId)
 
       res.status(200).json({
+        entity: 'task',
         data: deletedtaskId,
         message: 'task deleted'
       })
