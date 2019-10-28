@@ -27,6 +27,9 @@ app.use(bodyParser.json())
 
 // routes
 tasksAPI(app)
+app.get('/', (req, res) => {
+  res.send('Hello')
+})
 
 // Catch 404
 app.use(notFoundHandler)
@@ -35,10 +38,6 @@ app.use(notFoundHandler)
 app.use(logErrors)
 app.use(wrapErrors)
 app.use(errorHandler)
-
-app.get('/', (req, res) => {
-  res.send('Hello')
-})
 
 app.listen(config.port, () => {
   console.log(`Listen http://localhost:${config.port}`)

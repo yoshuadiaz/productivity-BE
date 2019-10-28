@@ -1,0 +1,12 @@
+{
+  "name": "productivity-app",
+  "version": 2,
+  "builds": [{"src" : "src/index.js", "use": "@now/node-server"}],
+  "routes": [{ "src": "/(.*)", "dest": "/src/index.js" }],
+  "env": {
+    "DB_USER": "@productivity-db-user",
+    "DB_PASSWORD": "@productivity-db-password",
+    "DB_HOST": "@productivity-db-host",
+    "DB_NAME": "@productivity-db-name"
+  }
+}
