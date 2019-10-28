@@ -2,6 +2,12 @@ const express = require('express')
 const Chance = require('chance')
 const chance = new Chance()
 const TasksService = require('../services/tasks')
+const {
+  createTaskSchema,
+  taskIdSchema,
+  updateTaskSchema
+} = require('../utils/schemas/tasks')
+const validationHandler = require('../utils/midleware/validationHandler.js')
 const NUM_OF_SEEDS = 50
 
 function tasksAPI (app) {
@@ -70,7 +76,7 @@ function tasksAPI (app) {
     }
   })
 
-  router.get('/:id', async (req, res, next) => {
+  router.get('/:id', validationHandler({ id: taskIdSchema }, 'params'), async (req, res, next) => {
     try {
       const { id } = req.params
       const task = await tasksService.getTask(id)
@@ -84,7 +90,7 @@ function tasksAPI (app) {
     }
   })
 
-  router.post('/', async (req, res, next) => {
+  router.post('/', validationHandler(createTaskSchema), async (req, res, next) => {
     const { body: task } = req
     try {
       const createdtaskId = await tasksService.createTask(task)
@@ -99,7 +105,7 @@ function tasksAPI (app) {
     }
   })
 
-  router.put('/:id', async (req, res, next) => {
+  router.put('/:id', validationHandler({ id: taskIdSchema }, 'params'), validationHandler(updateTaskSchema), async (req, res, next) => {
     const { id } = req.params
     const { task } = req.body
 
