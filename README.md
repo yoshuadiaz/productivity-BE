@@ -31,4 +31,13 @@ You need to create a **.env** file based on **.env.example** and give data for c
   npm start
 ```
 
+### Routes
+GET || http://<YOUR-SERVER-URL>/api/tasks/
+GET || http://<YOUR-SERVER-URL>/api/tasks/search
+GET || http://<YOUR-SERVER-URL>/api/tasks/seed
+GET || http://<YOUR-SERVER-URL>/api/tasks/:id
+POST || http://<YOUR-SERVER-URL>/api/tasks/
+PUT || http://<YOUR-SERVER-URL>/api/tasks/:id
+DELETE || http://<YOUR-SERVER-URL>/api/tasks/:taskId
+
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
