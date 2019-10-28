@@ -1,6 +1,8 @@
 # productivity-BE
 Productivity BackEnd with Node.JS
 
+[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
+
 ## Install
 Run on terminal
 
@@ -32,12 +34,17 @@ You need to create a **.env** file based on **.env.example** and give data for c
 ```
 
 ### Routes
-GET || http://<YOUR-SERVER-URL>/api/tasks/
-GET || http://<YOUR-SERVER-URL>/api/tasks/search
-GET || http://<YOUR-SERVER-URL>/api/tasks/seed
-GET || http://<YOUR-SERVER-URL>/api/tasks/:id
-POST || http://<YOUR-SERVER-URL>/api/tasks/
-PUT || http://<YOUR-SERVER-URL>/api/tasks/:id
-DELETE || http://<YOUR-SERVER-URL>/api/tasks/:taskId
-
-[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
+* Get all the taks
+  *  **GET** || http://**YOUR_SERVER_URL**/api/tasks/
+* Search tasks by description text
+  * **GET** || http://**YOUR_SERVER_URL**/api/tasks/search?q=**someText**
+* Seed the server with 50 random taks
+  * **GET** || http://**YOUR_SERVER_URL**/api/tasks/seed
+* Get one task by id
+  * **GET** || http://**YOUR_SERVER_URL**/api/tasks/:id
+* Create one new task
+  * **POST** || http://**YOUR_SERVER_URL**/api/tasks/
+* Update one task by id
+  * **PUT** || http://**YOUR_SERVER_URL**/api/tasks/:id
+* Delete one task by id
+  * **DELETE** || http://**YOUR_SERVER_URL**/api/tasks/:taskId
