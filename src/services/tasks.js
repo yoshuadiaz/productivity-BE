@@ -21,7 +21,7 @@ class TasksService {
   }
 
   async createTask (taskData) {
-    const createTaskId = await this.mongoDB.create(this.collection, { ...taskData.task, status: 'pending' })
+    const createTaskId = await this.mongoDB.create(this.collection, { ...taskData.task, status: taskData.task.status || 'pending' })
     return createTaskId
   }
 

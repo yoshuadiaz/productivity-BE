@@ -1,5 +1,8 @@
 const express = require('express')
+const Chance = require('chance')
+const chance = new Chance()
 const TasksService = require('../services/tasks')
+const NUM_OF_SEEDS = 50
 
 function tasksAPI (app) {
   const router = express.Router()
@@ -33,6 +36,37 @@ function tasksAPI (app) {
       })
     } catch (err) {
       next(err)
+    }
+  })
+
+  router.get('/seed', async (req, res, next) => {
+    try {
+      const tasksPromises = [...Array(NUM_OF_SEEDS).keys()].map(async () => {
+        const task = {
+          description: await chance.sentence({ words: 5 }),
+          duration: await chance.integer({ min: 1, max: 120 }),
+          timeRegistered: await chance.integer({ min: 1, max: 120 }),
+          status: await chance.pickone(['completed', 'pending'])
+        }
+        tasksService.createTask({ task })
+      })
+
+      await Promise.all(tasksPromises)
+
+      res.status(200).json({
+        entity: 'task',
+        data: null,
+        message: 'DB seeded'
+      })
+    } catch (error) {
+      res
+        .json({
+          entity: 'task',
+          data: null,
+          message: 'DB not seeded',
+          error: 'seeds fail'
+        })
+        .status(500)
     }
   })
 

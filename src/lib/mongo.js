@@ -47,7 +47,12 @@ class MongoLib {
 
   create (collection, data) {
     return this.connect().then(db => {
-      return db.collection(collection).insertOne({...data, createdAt: new Date(), updatedAt: new Date() })
+      return db.collection(collection).insertOne({
+        ...data,
+        timeRegistered: 0,
+        createdAt: data.createdAt || new Date(),
+        updatedAt: data.updatedAt || new Date()
+      })
     }).then(result => result.insertedId)
   }
 
