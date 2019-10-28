@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const { config } = require('./config')
 const tasksAPI = require('./routes/tasks')
@@ -15,11 +16,14 @@ const notFoundHandler = require('./utils/midleware/notFoundHandler')
 
 const { formatHandler } = require('./utils/midleware/formatHandler')
 
-// body parser
-app.use(bodyParser.json())
+// CORS config
+app.use(cors(config.cors))
 
 // format middleware
 app.use(formatHandler)
+
+// body parser
+app.use(bodyParser.json())
 
 // routes
 tasksAPI(app)

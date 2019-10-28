@@ -24,7 +24,6 @@ function tasksAPI (app) {
         data: tasks,
         message: 'tasks listed'
       })
-      next()
     } catch (err) {
       next(err)
     }
@@ -66,13 +65,13 @@ function tasksAPI (app) {
       })
     } catch (error) {
       res
+        .status(500)
         .json({
           entity: 'task',
           data: null,
           message: 'DB not seeded',
           error: 'seeds fail'
         })
-        .status(500)
     }
   })
 
