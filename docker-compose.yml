@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app:
+    image: productivity-be
+    build: .
+    command: npm start
+    volumes: 
+      - .:/srv/app/
+      - /srv/app/node_modules
+    environment:
+      NODE_ENV: "production"
+    ports:
+      - "3000:3000"

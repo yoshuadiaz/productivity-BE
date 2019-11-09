@@ -33,6 +33,19 @@ You need to create a **.env** file based on **.env.example** and give data for c
   npm start
 ```
 
+### Docker
+Build the image
+
+```bash
+docker build -t productivity-be .
+```
+
+Run with docker compose
+```
+docker-compose up
+```
+
+
 ### Routes
 * Get all the taks
   *  **GET** || http://**YOUR_SERVER_URL**/api/tasks/
