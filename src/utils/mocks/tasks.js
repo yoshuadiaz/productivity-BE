@@ -180,6 +180,39 @@ const tasksMock = [
     updatedAt: '2019-08-19 03:10:03'
   }
 ]
+
+const filteredTaskMocks = (id) => {
+  return tasksMock.filter(
+    task => task.id === id
+  )
+}
+
+const searchTaskMock = (status = null, search = null) => {
+  return tasksMock.filter(task => {
+    if (status && search) {
+      return task.description.toLowerCase().search(search.toLocaleLowerCase()) >= 0 && task.status === status
+    } else if (status) {
+      return task.status === status
+    } else if (search) {
+      return task.description.toLowerCase().search(search.toLocaleLowerCase()) >= 0
+    } else {
+      return true
+    }
+  })
+}
+
+class TaskServiceMock {
+  async getTasks (status = null, search = null) {
+    return Promise.resolve(searchTaskMock(status, search))
+  }
+
+  async createTask () {
+    return Promise(tasksMock[0])
+  }
+}
+
 module.exports = {
-  tasksMock
+  tasksMock,
+  filteredTaskMocks,
+  TaskServiceMock
 }

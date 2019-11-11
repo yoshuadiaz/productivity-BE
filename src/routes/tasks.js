@@ -18,12 +18,21 @@ function tasksAPI (app) {
   router.get('/', async (req, res, next) => {
     try {
       const { status } = req.body
-      const tasks = await tasksService.getTasks(status)
-      res.status(200).json({
-        entity: 'task',
-        data: tasks,
-        message: 'tasks listed'
-      })
+      if (!status) {
+        const tasks = await tasksService.getTasks()
+        res.status(200).json({
+          entity: 'task',
+          data: tasks,
+          message: 'tasks listed'
+        })
+      } else {
+        const tasks = await tasksService.getTasks(status)
+        res.status(200).json({
+          entity: 'task',
+          data: tasks,
+          message: 'tasks listed'
+        })
+      }
     } catch (err) {
       next(err)
     }
