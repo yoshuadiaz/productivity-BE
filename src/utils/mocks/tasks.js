@@ -1,6 +1,6 @@
 const tasksMock = [
   {
-    id:'5dcb78c8fc13ae1e9e000000',
+    id: '5dcb78c8fc13ae1e9e000000',
     description: 'Teeth',
     duration: 93,
     timeRegistered: 87,

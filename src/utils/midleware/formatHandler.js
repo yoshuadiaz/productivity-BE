@@ -30,5 +30,6 @@ function formatHandler (body, req, res) {
 }
 
 module.exports = {
-  formatHandler: mung.json(formatHandler)
+  formatHandler: mung.json(formatHandler),
+  formatHandlerForTest: formatHandler
 }

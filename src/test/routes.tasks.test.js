@@ -55,7 +55,7 @@ describe('routes - tasks', function () {
     })
 
     it('should respond with the list of tasks matched with search param', function (done) {
-      request.get('/api/tasks/search').query({q: 'Win'}).end((_, res) => {
+      request.get('/api/tasks/search').query({ q: 'Win' }).end((_, res) => {
         assert.deepStrictEqual(res.body, {
           data: tasksMock.filter(task => task.description.search('Win') >= 0),
           entity: 'task',
@@ -157,7 +157,7 @@ describe('routes - tasks', function () {
     })
 
     it('should send an status 500 try to update invalid task id', function (done) {
-      request.put(`/api/tasks/5d`).expect(500, done)
+      request.put('/api/tasks/5d').expect(500, done)
     })
   })
 
